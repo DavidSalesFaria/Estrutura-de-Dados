@@ -62,9 +62,10 @@ void inserir(int val, no *p){
 
 OBS: Como o nó cabeça apontava para NULL, o primeiro nó a ser inserido na lista apontará para NULL também e conforme formos inserindo mais nós, o primeiro nó a entrar na lista ficará no último lugar.
 
-Assista esse vídeo que ilustra a inserção de valores em uma lista encadeada.
+**Ilustração: **
+[Clique aqui](https://youtu.be/ZU3imaXbdTk) E assista esse vídeo que ilustra a inserção de valores em uma lista encadeada.
 
-[![Texto](Estrutura-de-Dados/lista/1-listas_encadeadas/imagens/video1.png)](https://youtu.be/ZU3imaXbdTk)
+
 
 
 Referências:
