@@ -20,7 +20,7 @@ typedef struct lista{
 ## Criação
 Para criar uma lista encadeada, primeiro precisamos criar um nó cabeça. Este nó,  aponta para o começo da nossa lista, portanto ele é muito importante.
 
-Vamos inizializar o nosso nó cabeça na nossa função main, lembrando que é uma variável do tipo 'no'. Vamos zerar o valor do nó e como é o primeiro nó da lista, inicialmente, o seu ponteiro 'prox' não aponta para nada.
+Vamos inicializar o nosso nó cabeça 'le' (lista encadeada) na nossa função main, lembrando que é uma variável do tipo 'no'. Vamos zerar o valor do nó e como é o primeiro nó da lista, inicialmente, o seu ponteiro 'prox' não aponta para nada.
 ```C
 no *le; 
 // Alocação dinâmica de memória
@@ -59,12 +59,53 @@ void inserir(int val, no *p){
 
 }
 ```
-
-OBS: Como o nó cabeça apontava para NULL, o primeiro nó a ser inserido na lista apontará para NULL também e conforme formos inserindo mais nós, o primeiro nó a entrar na lista ficará no último lugar.
-
 **Ilustração:**<br>
 [Clique aqui](https://youtu.be/ZU3imaXbdTk) E assista esse vídeo que ilustra a inserção de valores em uma lista encadeada.
 
+
+
+**Vamos chamar o procedimento de inserção na nossa função main e inserir alguns valores na lista:**
+```C
+inserir(30, le);
+inserir(20, le);
+```
+
+OBS: Como o nó cabeça apontava para NULL, o primeiro nó a ser inserido na lista apontará para NULL também e conforme formos inserindo mais nós, o primeiro nó a entrar na lista ficará no último lugar.
+
+
+## Percorrer
+
+Já criamos e adicionamos valores à nossa lista, agora vamos percorre-la e printar todos os valores inseridos.
+
+```C
+void imprimir(no *lista){
+    /*
+    Imprime a lista
+    
+    no *lista [Ponteiro de nó que aponta para o nó cabeça da lista]
+    */
+    // Ponteiro para leitura
+    no *p;
+
+    // Loop ----
+    // (Enquanto o próximo nó da lista não for nulo)
+    // Printa os dados dos nós lista
+    while(lista->proximo != NULL){
+        // Printa o dado do nó atual
+        printf("%d, ", lista->dado);
+        // Passa para o próximo nó
+        lista = lista->proximo;
+    }
+    // OBS: O laço será interrompido antes de 
+    // printar o dado do último nó, por isso
+    // será necessário o printf adicional abaixo:
+    printf("%d\n", lista->dado);
+}
+```
+
+
+**Ilustração:**<br>
+[Clique aqui](https://youtu.be/is7emG01YDs) E assista esse vídeo que ilustra o percorrer uma lista encadeada.
 
 
 
