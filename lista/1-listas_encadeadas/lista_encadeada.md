@@ -64,7 +64,7 @@ OBS: Como o nó cabeça apontava para NULL, o primeiro nó a ser inserido na lis
 
 Assista esse vídeo que ilustra a inserção de valores em uma lista encadeada.
 
-[![Texto](C:\Users\David\Documents\MeusRepositoriosGit\Estrutura-de-Dados\lista\1-listas_encadeadas\imagens\video1)](https://youtu.be/ZU3imaXbdTk)
+[![Texto](Estrutura-de-Dados/lista/1-listas_encadeadas/imagens/video1.png)](https://youtu.be/ZU3imaXbdTk)
 
 
 Referências:
