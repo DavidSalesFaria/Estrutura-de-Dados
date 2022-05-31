@@ -41,45 +41,88 @@ void inserir(int val, no *p){
 
 }
 
-void excluir(no *p){
-    /*
-    Exclui o último elemento a ser inserido
-    na lista
+// void remover(no *p){
+//     /*
+//     Exclui o último elemento a ser inserido
+//     na lista
     
-    no *p [Ponteiro de nó que aponta para o nó cabeça]
+//     no *p [Ponteiro de nó que aponta para o nó cabeça]
+//     */
+
+//     no *lixo; // Lixo
+//     // Removemos o nó ------
+//     // Passamos o endereço do nó que removeremos
+//     // para o "lixo". Esse é o último nó a ser inserido
+//     // ou seja, é o nó mais perto do nó cabeça.
+//     lixo = p->prox;
+//     // Fazemos o nó cabeça apontar para
+//     // o que o nó que jogamos no lixo apontava
+//     p->prox = lixo->prox;
+
+//     // Limpamos o lixo
+//     free(lixo);
+// }
+
+
+void remover2(int val, no *lista){
+    /*Remove elementos de uma lista encadeada.
     */
 
-    no *lixo; // Lixo
-    // Removemos o nó ------
-    // Passamos o endereço do nó que removeremos
-    // para o "lixo". Esse é o último nó a ser inserido
-    // ou seja, é o nó mais perto do nó cabeça.
-    lixo = p->prox;
-    // Fazemos o nó cabeça apontar para
-    // o que o nó que jogamos no lixo apontava
-    p->prox = lixo->prox;
+    // Cria um ponteiro para guardar a posição
+    // do nó atual antes de passar para o próximo
+    no *atual;
+    // Aloca memória dinamicamente
+    atual = (no*) malloc(sizeof(no));
 
-    // Limpamos o lixo
-    free(lixo);
+    // Laço que percorre os nós da lista----
+    // (Enquanto o dado do nó atual, for diferente do dado buscado)
+    while (lista->valor != val){
+
+        // Se o próximo nó da lista for NULL
+        if(lista->prox == NULL){
+            break; // Interrompa
+        }
+
+        // Guardamos a posição do nó atual
+        atual = lista;
+        // Passamos para o próximo nó
+        lista = lista->prox; 
+    }
+
+    // Se o dado do próximo nó for igual ao dado buscado:
+    if (lista->valor == val){
+        // Faço o ponteiro "proximo" do nó atual
+        // apontar para o nó posterior ao nó que
+        // desejamos remover. Dessa forma, 
+        // removemos o nó que queremos remover
+        atual->prox = lista->prox;
+    }
+
 }
 
-void imprimir(no *le){
+
+void imprimir(no *lista){
     /*
     Imprime a lista
     
-    no *le [Ponteiro de nó que aponta para o nó cabeça]
+    no *lista [Ponteiro de nó que aponta para o nó cabeça da lista]
     */
     // Ponteiro para leitura
     no *p;
 
-    // Laço para percorrer a lista:
-    // Percorre a lista fazendo p começar pelo
-    // nó cabeça e enquanto p não for NULL
-    // o laço pass para o próximo nó (p = p->prox) 
-    for (p = le; p!=NULL; p = p->prox){
-        printf("%d, ", p->valor);
+    // Loop ----
+    // (Enquanto o próximo nó da lista não for nulo)
+    // Printa os dados dos nós lista
+    while(lista->prox != NULL){
+        // Printa o dado do nó atual
+        printf("%d, ", lista->valor);
+        // Passa para o próximo nó
+        lista = lista->prox;
     }
-    printf("\n");
+    // OBS: O laço será interrompido antes de 
+    // printar o dado do último nó, por isso
+    // será necessário o printf adicional abaixo:
+    printf("%d\n", lista->valor);
 }
 
 
@@ -104,7 +147,7 @@ int main(){
 
     // Exclui o último elemento
     // a entrar na lista, neste caso, 60.
-    excluir(le);
+    remover2(36, le);
 
     // Imprime a lista
     imprimir(le);

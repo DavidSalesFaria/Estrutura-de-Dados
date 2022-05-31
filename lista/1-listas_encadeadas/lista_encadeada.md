@@ -108,8 +108,56 @@ void imprimir(no *lista){
 [Clique aqui](https://youtu.be/is7emG01YDs) E assista esse vídeo que ilustra o percorrer uma lista encadeada.
 
 
+## Remoção
 
-Referências:
+Sabemos como adicionar valores depois do nó cabeça. Vamos fazer algo um pouco diferente com o procedimento de remoção. Vamos que o procedimento possa remover qualquer elemento da lista.
+
+O procedimento abaixo tem um laço que percorre a lista, e quando encontra o nó com o valor buscado, remove o nó.
+
+```C
+void remover(int val, no *lista){
+    /*Remove elementos de uma lista encadeada.
+    */
+
+    // Cria um ponteiro para guardar a posição
+    // do nó atual antes de passar para o próximo
+    no *atual;
+    // Aloca memória dinamicamente
+    atual = (no*) malloc(sizeof(no));
+
+    // Laço que percorre os nós da lista----
+    // (Enquanto o dado do nó atual, for diferente do dado buscado)
+    while (lista->valor != val){
+
+        // Se o próximo nó da lista for NULL
+        if(lista->prox == NULL){
+            break; // Interrompa
+        }
+
+        // Guardamos a posição do nó atual
+        atual = lista;
+        // Passamos para o próximo nó
+        lista = lista->prox; 
+    }
+
+    // Se o dado do próximo nó for igual ao dado buscado:
+    if (lista->valor == val){
+        // Faço o ponteiro "proximo" do nó atual
+        // apontar para o nó posterior ao nó que
+        // desejamos remover. Dessa forma, 
+        // removemos o nó que queremos remover
+        atual->prox = lista->prox;
+    }
+
+}
+```
+
+
+**Ilustração:**<br>
+[Clique aqui](https://youtu.be/8nKdvdua4Vw) E assista esse vídeo que ilustra a remoção de um elemento de uma lista encadeada.
+
+
+**Referências:**
 
 Site:
 https://www.ime.usp.br/~pf/algoritmos/aulas/lista.html
