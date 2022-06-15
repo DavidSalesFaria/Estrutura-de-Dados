@@ -27,7 +27,7 @@ void inserir(int val, no *p){
     // Criação do novo nó por
     // Alocação dinâmica
     no *novo;
-    novo = malloc(sizeof(no));
+    novo = (no*) malloc(sizeof(no));
     // Conteúdo do nó
     novo->valor = val;
     // Inserimos o nó na lista:
@@ -40,6 +40,8 @@ void inserir(int val, no *p){
     p->prox = novo;
 
 }
+
+
 
 // void remover(no *p){
 //     /*
@@ -96,8 +98,55 @@ void remover2(int val, no *lista){
         // desejamos remover. Dessa forma, 
         // removemos o nó que queremos remover
         atual->prox = lista->prox;
+
+        // Libera os bystes do ponteiro lista,
+        // no caso, 4bytes
+        free(lista);
     }
 
+}
+
+
+void limpar(no *lista){
+    /*Realiza a limpeza da lista encadeada para
+    liberação da memória alocada para os nós.
+    */
+
+    no *lixo;
+    lixo = (no*) malloc(sizeof(no));
+
+    // Flag, que verifica se o laço
+    // já passou pelo nó cabeça
+    int no_cb=0;
+
+    // Enquanto o próximo valor da lista
+    // não for nulo, percorre a lista
+    while(lista->prox != NULL){
+        
+        // Se no_cb == 0, então o nó atual
+        // é o nó cabeça, então vamos ignora-lo
+        if (no_cb == 0){
+            // Altera o valor da flag
+            no_cb=1;
+            // Pula o nó cabeça e joga o próximo
+            // nó no lixo
+            lixo = lista->prox;
+            // Faz o nó cabeça apontar para NULL
+            lista->prox = NULL;
+        }
+        // Senão, já passamos pelo nó cabeça
+        else{
+            // Passa o nó atual para o lixo
+            lixo = lista;   
+        }
+
+        // Passa para o próximo nó
+        lista = lixo->prox;
+        // Limpa o lixo
+        free(lixo);    
+    }
+    // Limpa o nó atual que sobrou (além do nó cabeça)
+    free(lista); 
 }
 
 
@@ -153,7 +202,11 @@ int main(){
     imprimir(le);
 
     // Liberação de memória
-    free(le);
+    //free(le);
+    limpar(le);
+
+    imprimir(le);
+
 
 return 0;
 } 
